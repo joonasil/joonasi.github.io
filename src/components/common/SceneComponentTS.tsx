@@ -9,6 +9,7 @@ import { SceneContext, SceneContextType } from '@/components/common/scene';
 import { EngineCanvasContext, EngineCanvasContextType } from '@/components/common/engine';
 import { Inspector } from '@babylonjs/inspector';
 import useInspector from '@/store/inspector';
+import { Box } from '@mui/material';
 
 export * from '@/components/common/engine';
 export * from '@/components/common/scene';
@@ -176,6 +177,8 @@ export default function SceneComponentTS(
     ...rest
   } = props;
 
+  console.log('Adapt to device ratio' + adaptToDeviceRatio);
+
   const [sceneContext, setSceneContext] = useState<SceneContextType>({
     scene: null,
     sceneReady: false,
@@ -290,7 +293,9 @@ export default function SceneComponentTS(
 
   return (
     <>
-      <canvas ref={reactCanvas} {...rest} />
+      <Box>
+        <canvas width={200} height={200} ref={reactCanvas} {...rest} />
+      </Box>
       <EngineCanvasContext.Provider value={engineContext}>
         <SceneContext.Provider value={sceneContext}>
           {(renderChildrenWhenReady !== true ||
