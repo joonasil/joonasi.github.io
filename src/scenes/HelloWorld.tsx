@@ -1,5 +1,5 @@
 import { FreeCamera, Vector3, HemisphericLight, MeshBuilder, Mesh, Scene } from '@babylonjs/core';
-import SceneComponent from 'babylonjs-hook';
+import SceneComponentTS from '@/components/common/SceneComponentTS';
 
 let box: Mesh;
 
@@ -45,6 +45,6 @@ const onRender = (scene: Scene) => {
 
 export default function HelloWorld() {
   return (
-    <SceneComponent antialias onSceneReady={onSceneReady} onRender={onRender} id="hello-world" />
+    <SceneComponentTS antialias onSceneReady={onSceneReady} onRender={onRender} id="hello-world" />
   );
 }
