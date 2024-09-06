@@ -10,11 +10,13 @@ import { FlexBox } from '@/components/styled';
 import useHotKeysDialog from '@/store/hotkeys';
 import useSidebar from '@/store/sidebar';
 import useTheme from '@/store/theme';
+import useInspector from '@/store/inspector';
 
 function HotKeys() {
   const [, themeActions] = useTheme();
   const [, sidebarActions] = useSidebar();
   const [isHotKeysDialogOpen, hotKeysDialogActions] = useHotKeysDialog();
+  const [, inspectorActions] = useInspector();
 
   // I would love to define all hotkeys in the config and loop it here and avoid this repetitive code.
   // But the `react-hotkeys-hook` library, which we use to handle hotkeys provides only hook (`useHotkeys`).
@@ -23,6 +25,7 @@ function HotKeys() {
   useHotkeys('alt+s', sidebarActions.toggle);
   useHotkeys('alt+t', themeActions.toggle);
   useHotkeys('alt+k', hotKeysDialogActions.toggle);
+  useHotkeys('alt+i', inspectorActions.toggle);
 
   return (
     <Dialog
@@ -36,20 +39,46 @@ function HotKeys() {
       <DialogContent>
         <FlexBox alignItems="center" height={50} justifyContent="space-between">
           <Typography>Toggle Theme</Typography>
-          <Button color="warning" variant="outlined" onClick={themeActions.toggle}>
+          <Button
+            color="warning"
+            variant="outlined"
+            onClick={themeActions.toggle}
+            sx={{ minWidth: '92px' }}
+          >
             alt + t
           </Button>
         </FlexBox>
         <FlexBox alignItems="center" height={50} justifyContent="space-between">
           <Typography>Toggle Sidebar</Typography>
-          <Button color="warning" variant="outlined" onClick={sidebarActions.toggle}>
+          <Button
+            color="warning"
+            variant="outlined"
+            onClick={sidebarActions.toggle}
+            sx={{ minWidth: '92px' }}
+          >
             alt + s
           </Button>
         </FlexBox>
         <FlexBox alignItems="center" height={50} justifyContent="space-between">
           <Typography>Toggle Hot Keys&apos; Dialog</Typography>
-          <Button color="warning" variant="outlined" onClick={hotKeysDialogActions.toggle}>
+          <Button
+            color="warning"
+            variant="outlined"
+            onClick={hotKeysDialogActions.toggle}
+            sx={{ minWidth: '92px' }}
+          >
             alt + k
+          </Button>
+        </FlexBox>
+        <FlexBox alignItems="center" height={50} justifyContent="space-between">
+          <Typography>Toggle Inspectior</Typography>
+          <Button
+            color="warning"
+            variant="outlined"
+            onClick={inspectorActions.toggle}
+            sx={{ minWidth: '92px' }}
+          >
+            alt + i
           </Button>
         </FlexBox>
       </DialogContent>
